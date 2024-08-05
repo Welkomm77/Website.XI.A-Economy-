@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Website Komentar</title>
+	<style>
+	  body {
+	font-family: Arial, sans-serif;
+}
+
+#form-komentar {
+	width: 50%;
+	margin: 20px auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#form-komentar input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+}
+
+#form-komentar button[type="button"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#form-komentar button[type="button"]:hover {
+	background-color: #3e8e41;
+}
+
+#komentar-kumpulan {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#komentar-kumpulan li {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+#komentar-kumpulan li:last-child {
+	border-bottom: none;
+}
+	</style>
+</head>
+<body>
+	<h1>Website Komentar</h1>
+	<form id="form-komentar">
+		<input type="text" id="komentar" placeholder="Tulis komentar Anda...">
+		<button id="kirim-komentar">Kirim</button>
+	</form>
+	<ul id="komentar-kumpulan"></ul>
+
+	<script>
+	  const formKomentar = document.getElementById('form-komentar');
+const komentarKumpulan = document.getElementById('komentar-kumpulan');
+
+formKomentar.addEventListener('submit', (e) => {
+	e.preventDefault();
+	const komentar = document.getElementById('komentar').value;
+	if (komentar !== '') {
+		kirimKomentarKeWhatsApp(komentar);
+		document.getElementById('komentar').value = '';
+	}
+});
+
+function kirimKomentarKeWhatsApp(komentar) {
+	const nomorWhatsApp = '+6285724385372'; // ganti dengan nomor WhatsApp Anda
+	const pesan = `Komentar dari Website sekolah: ${komentar}`;
+	const url = `https://api.whatsapp.com/send?phone=${nomorWhatsApp}&text=${pesan}`;
+	window.open(url, '_blank');
+}
+	</script>
+</body>
+</html>
